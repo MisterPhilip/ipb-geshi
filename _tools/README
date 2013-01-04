@@ -1,0 +1,10 @@
+The tools included:
+
+ * cssgen2.php
+    This will build the CSS for all the files within the GeSHi language directory.
+      To use this file, you should place it within /admin/sources/classes/text/parser/bbcode/sources/geshi
+      You can then call it via the command line, `php cssgen.php > geshi.css`. From there, you should 
+      merge the geshi.css file that was output with the one currently in the css directory. By default, that 
+      is located at /public/style_css/geshi.css
+
+-EOF-

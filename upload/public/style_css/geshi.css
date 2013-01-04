@@ -1,0 +1,21 @@
+/* GeSHi Styling - mostly the same as the IPB styles */
+pre.geshi, code.geshi {
+    background-color: #fafafa !important;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    color: #000000;
+    padding: 5px;
+    border: 1px solid #c9c9c9;
+    overflow: auto;
+    margin-left: 10px;
+    font-size: 13px;
+    width: 95%;
+    margin: 1em auto;
+    padding: 1em;
+    white-space: pre-wrap;
+}
+/* GeSHi Code */
