@@ -1,381 +1,381 @@
 <?xml version="1.0" encoding="utf-8"?>
 <hookexport>
-  <hookdata>
-    <config>
-      <hook_name>GeSHi</hook_name>
-      <hook_desc>Replaces Prettify with GeSHi</hook_desc>
-      <hook_author>Philip Lawrence</hook_author>
-      <hook_email>philip@misterphilip.com</hook_email>
-      <hook_website><![CDATA[http://misterphilip.com/ipb.php?action=view&amp;product=GeSHi]]></hook_website>
-      <hook_update_check><![CDATA[http://misterphilip.com/ipb.php?update=view&amp;product=GeSHi]]></hook_update_check>
-      <hook_requirements><![CDATA[a:3:{s:21:"required_applications";a:0:{}s:20:"hook_php_version_min";s:0:"";s:20:"hook_php_version_max";s:0:"";}]]></hook_requirements>
-      <hook_version_human>1.0.0</hook_version_human>
-      <hook_version_long>10001</hook_version_long>
-      <hook_extra_data><![CDATA[a:3:{s:7:"display";a:2:{s:8:"settings";s:30:"Setting groups: GeSHi Settings";s:3:"css";s:17:"CSS Files:  geshi";}s:13:"settingGroups";a:1:{i:0;s:5:"geshi";}s:3:"css";a:1:{i:0;s:5:"geshi";}}]]></hook_extra_data>
-      <hook_key>GeSHi</hook_key>
-      <hook_global_caches/>
-    </config>
-  </hookdata>
-  <hookfiles>
-    <file>
-      <hook_file_real>GeSHi_IncludeHighlighter.php</hook_file_real>
-      <hook_type>skinHooks</hook_type>
-      <hook_classname>GeSHi_IncludeHighlighter</hook_classname>
-      <hook_data><![CDATA[a:8:{s:12:"dataLocation";s:0:"";s:14:"libApplication";s:0:"";s:15:"classToOverload";s:11:"skin_global";s:9:"skinGroup";N;s:12:"skinFunction";N;s:4:"type";N;s:2:"id";N;s:8:"position";N;}]]></hook_data>
-      <hooks_source/>
-    </file>
-  </hookfiles>
-  <hookextras_settings>
-    <setting>
-      <conf_is_title>1</conf_is_title>
-      <conf_title_title>GeSHi Settings</conf_title_title>
-      <conf_title_desc>Settings for the GeSHi code highlighter</conf_title_desc>
-      <conf_title_noshow>0</conf_title_noshow>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_title_app>core</conf_title_app>
-      <conf_title_tab>System</conf_title_tab>
-    </setting>
-    <setting>
-      <conf_id>353</conf_id>
-      <conf_title>Auto-Caps</conf_title>
-      <conf_description>Auto-Caps/NoCaps is a nifty little feature that capitalises or lowercases automatically certain lexics when they are styled. QuickBASIC, a dialect of BASIC which is well known for it’s capatalisation, and SQL is another language well known for using caps for readability.</conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>dropdown</conf_type>
-      <conf_key>geshi_autoCaps</conf_key>
-      <conf_value/>
-      <conf_default>0</conf_default>
-      <conf_extra>0=Don’t change the case of any lexics, leave as they are found&#13;
-1=Uppercase all lexics found&#13;
-2=Lowercase all lexics found</conf_extra>
-      <conf_evalphp/>
-      <conf_protected>1</conf_protected>
-      <conf_position>8</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>347</conf_id>
-      <conf_title>Enable URLs to functions</conf_title>
-      <conf_description><![CDATA[GeSHi provides the option to link function names (such as in PHP, fopen( .. ) would link to <a href="http://php.net/fopen">http://php.net/fopen</a>. These links are safe to use and can be considered helpful for users.]]></conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>yes_no</conf_type>
-      <conf_key>geshi_clickableURL</conf_key>
-      <conf_value/>
-      <conf_default>1</conf_default>
-      <conf_extra/>
-      <conf_evalphp/>
-      <conf_protected>1</conf_protected>
-      <conf_position>3</conf_position>
-      <conf_start_group>GeSHi Options</conf_start_group>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>355</conf_id>
-      <conf_title>Default language</conf_title>
-      <conf_description>If the user does not specify the language, what should we default to?</conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>dropdown</conf_type>
-      <conf_key>geshi_defaultLanguage</conf_key>
-      <conf_value/>
-      <conf_default>html5</conf_default>
-      <conf_extra>4cs=GADV 4CS&#13;
-6502acme=MOS 6502 (6510) ACME Cross Assembler format&#13;
-6502kickass=MOS 6502 (6510) Kick Assembler format&#13;
-6502tasm=MOS 6502 (6510) TASM/64TASS 1.46 Assembler format&#13;
-68000devpac=Motorola 68000 - HiSoft Devpac ST 2 Assembler format&#13;
-abap=ABAP&#13;
-actionscript=ActionScript&#13;
-actionscript3=ActionScript 3&#13;
-ada=Ada&#13;
-algol68=ALGOL 68&#13;
-apache=Apache configuration&#13;
-applescript=AppleScript&#13;
-apt_sources=Apt sources&#13;
-arm=ARM ASSEMBLER&#13;
-asm=ASM&#13;
-asp=ASP&#13;
-asymptote=asymptote&#13;
-autoconf=Autoconf&#13;
-autohotkey=Autohotkey&#13;
-autoit=AutoIt&#13;
-avisynth=AviSynth&#13;
-awk=awk&#13;
-bascomavr=BASCOM AVR&#13;
-bash=Bash&#13;
-basic4gl=Basic4GL&#13;
-bf=Brainfuck&#13;
-bibtex=BibTeX&#13;
-blitzbasic=BlitzBasic&#13;
-bnf=bnf&#13;
-boo=Boo&#13;
-c=C&#13;
-c_loadrunner=C (LoadRunner)&#13;
-c_mac=C (Mac)&#13;
-caddcl=CAD DCL&#13;
-cadlisp=CAD Lisp&#13;
-cfdg=CFDG&#13;
-cfm=ColdFusion&#13;
-chaiscript=ChaiScript&#13;
-cil=CIL&#13;
-clojure=Clojure&#13;
-cmake=CMake&#13;
-cobol=COBOL&#13;
-coffeescript=CoffeeScript&#13;
-cpp-qt=C++ (Qt)&#13;
-cpp=C++&#13;
-csharp=C#&#13;
-css=CSS&#13;
-cuesheet=Cuesheet&#13;
-d=D&#13;
-dcl=DCL&#13;
-dcpu16=DCPU-16 Assembly&#13;
-dcs=DCS&#13;
-delphi=Delphi&#13;
-diff=Diff&#13;
-div=DIV&#13;
-dos=DOS&#13;
-dot=dot&#13;
-e=E&#13;
-ecmascript=ECMAScript&#13;
-eiffel=Eiffel&#13;
-email=eMail (mbox)&#13;
-epc=EPC&#13;
-erlang=Erlang&#13;
-euphoria=Euphoria&#13;
-f1=Formula One&#13;
-falcon=Falcon&#13;
-fo=FO (abas-ERP)&#13;
-fortran=Fortran&#13;
-freebasic=FreeBasic&#13;
-freeswitch=FreeSWITCH&#13;
-fsharp=F#&#13;
-gambas=GAMBAS&#13;
-gdb=GDB&#13;
-genero=genero&#13;
-genie=Genie&#13;
-gettext=GNU Gettext&#13;
-glsl=glSlang&#13;
-gml=GML&#13;
-gnuplot=Gnuplot&#13;
-go=Go&#13;
-groovy=Groovy&#13;
-gwbasic=GwBasic&#13;
-haskell=Haskell&#13;
-haxe=Haxe&#13;
-hicest=HicEst&#13;
-hq9plus=HQ9+&#13;
-html4strict=HTML&#13;
-html5=HTML5&#13;
-icon=Icon&#13;
-idl=Uno Idl&#13;
-ini=INI&#13;
-inno=Inno&#13;
-intercal=INTERCAL&#13;
-io=Io&#13;
-j=J&#13;
-java=Java&#13;
-java5=Java(TM) 2 Platform Standard Edition 5.0&#13;
-javascript=Javascript&#13;
-jquery=jQuery&#13;
-kixtart=KiXtart&#13;
-klonec=KLone C&#13;
-klonecpp=KLone C++&#13;
-latex=LaTeX&#13;
-lb=Liberty BASIC&#13;
-ldif=LDIF&#13;
-lisp=Lisp&#13;
-llvm=LLVM Intermediate Representation&#13;
-locobasic=Locomotive Basic&#13;
-logtalk=Logtalk&#13;
-lolcode=LOLcode&#13;
-lotusformulas=Lotus Notes @Formulas&#13;
-lotusscript=LotusScript&#13;
-lscript=LScript&#13;
-lsl2=LSL2&#13;
-lua=Lua&#13;
-m68k=Motorola 68000 Assembler&#13;
-magiksf=MagikSF&#13;
-make=GNU make&#13;
-mapbasic=MapBasic&#13;
-matlab=Matlab M&#13;
-mirc=mIRC Scripting&#13;
-mmix=MMIX&#13;
-modula2=Modula-2&#13;
-modula3=Modula-3&#13;
-mpasm=Microchip Assembler&#13;
-mxml=MXML&#13;
-mysql=MySQL&#13;
-nagios=Nagios&#13;
-netrexx=NetRexx&#13;
-newlisp=newlisp&#13;
-nsis=NSIS&#13;
-oberon2=Oberon-2&#13;
-objc=Objective-C&#13;
-objeck=Objeck Programming Language&#13;
-ocaml-brief=OCaml (brief)&#13;
-ocaml=OCaml&#13;
-octave=GNU Octave&#13;
-oobas=OpenOffice.org Basic&#13;
-oorexx=ooRexx&#13;
-oracle11=Oracle 11 SQL&#13;
-oracle8=Oracle 8 SQL&#13;
-oxygene=Oxygene (Delphi Prism)&#13;
-oz=OZ&#13;
-parasail=ParaSail&#13;
-parigp=PARI/GP&#13;
-pascal=Pascal&#13;
-pcre=PCRE&#13;
-per=per&#13;
-perl=Perl&#13;
-perl6=Perl 6&#13;
-pf=OpenBSD Packet Filter&#13;
-php-brief=PHP (brief)&#13;
-php=PHP&#13;
-pic16=PIC16&#13;
-pike=Pike&#13;
-pixelbender=Pixel Bender 1.0&#13;
-pli=PL/I&#13;
-plsql=PL/SQL&#13;
-postgresql=PostgreSQL&#13;
-povray=POVRAY&#13;
-powerbuilder=PowerBuilder&#13;
-powershell=PowerShell&#13;
-proftpd=ProFTPd configuration&#13;
-progress=Progress&#13;
-prolog=Prolog&#13;
-properties=PROPERTIES&#13;
-providex=ProvideX&#13;
-purebasic=PureBasic&#13;
-pycon=Python (console mode)&#13;
-pys60=Python for S60&#13;
-python=Python for S60&#13;
-q=q/kdb+&#13;
-qbasic=QBasic/QuickBASIC&#13;
-rails=Rails&#13;
-rebol=REBOL&#13;
-reg=Microsoft Registry&#13;
-rexx=rexx&#13;
-robots=robots.txt&#13;
-rpmspec=RPM Specification File&#13;
-rsplus=R / S+&#13;
-ruby=Ruby&#13;
-sas=SAS&#13;
-scala=Scala&#13;
-scheme=Scheme&#13;
-scilab=SciLab&#13;
-sdlbasic=sdlBasic&#13;
-smalltalk=Smalltalk&#13;
-smarty=Smarty&#13;
-spark=SPARK&#13;
-sparql=SPARQL&#13;
-sql=SQL&#13;
-stonescript=StoneScript&#13;
-systemverilog=SystemVerilog&#13;
-tcl=TCL&#13;
-teraterm=Tera Term Macro&#13;
-text=Text&#13;
-thinbasic=thinBasic&#13;
-tsql=T-SQL&#13;
-typoscript=TypoScript&#13;
-unicon=Unicon (Unified Extended Dialect of Icon)&#13;
-upc=UPC&#13;
-urbi=Urbi&#13;
-uscript=Unreal Script&#13;
-vala=Vala&#13;
-vb=Visual Basic&#13;
-vbnet=vb.net&#13;
-vedit=Vedit macro language&#13;
-verilog=Verilog&#13;
-vhdl=VHDL&#13;
-vim=Vim Script&#13;
-visualfoxpro=Visual Fox Pro&#13;
-visualprolog=Visual Prolog&#13;
-whitespace=Whitespace&#13;
-whois=Whois (RPSL format)&#13;
-winbatch=Winbatch&#13;
-xbasic=XBasic&#13;
-xml=XML&#13;
-xorg_conf=Xorg configuration&#13;
-xpp=X++&#13;
-yaml=YAML&#13;
-z80=ZiLOG Z80 Assembler&#13;
-zxbasic=ZXBasic</conf_extra>
-      <conf_evalphp/>
-      <conf_protected>1</conf_protected>
-      <conf_position>9</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>350</conf_id>
-      <conf_title>Use CSS file instead of inline</conf_title>
-      <conf_description>By default GeSHi loads all styles inline with the code instead of in a stylesheet. By switching to a stylesheet, you allow the user to cache the file. However it should be noted that this file can be large if you are using a lot of languages. </conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>yes_no</conf_type>
-      <conf_key>geshi_externalCss</conf_key>
-      <conf_value/>
-      <conf_default>0</conf_default>
-      <conf_extra/>
-      <conf_evalphp/>
-      <conf_protected>1</conf_protected>
-      <conf_position>4</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>351</conf_id>
-      <conf_title>Fancy line numbers</conf_title>
-      <conf_description><![CDATA[If you wish to enable fancy line numbers, enter in the n<sup style="font-size:60%;">th</sup> line you want to be bold. To disable fancy line numbers. leave blank or set to 0.]]></conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>input</conf_type>
-      <conf_key>geshi_fancyLines</conf_key>
-      <conf_value/>
-      <conf_default>0</conf_default>
-      <conf_extra/>
-      <conf_evalphp>$value = intval( $value );</conf_evalphp>
-      <conf_protected>1</conf_protected>
-      <conf_position>6</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>349</conf_id>
-      <conf_title>Hide line numbers if no starting number</conf_title>
-      <conf_description>Should we hide the line numbers if the user gave us no starting line number, or gave 0?</conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>yes_no</conf_type>
-      <conf_key>geshi_gutter</conf_key>
-      <conf_value/>
-      <conf_default>0</conf_default>
-      <conf_extra/>
-      <conf_evalphp/>
-      <conf_protected>1</conf_protected>
-      <conf_position>5</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>352</conf_id>
-      <conf_title>Key to highlight a line</conf_title>
-      <conf_description><![CDATA[Users have the ability to highlight lines (<a href="http://qbnz.com/highlighter/geshi-doc.html#highlighting-special-lines-extra">Demo</a>) based on characters they put at the beginning of that line. <br /><br />
+    <hookdata>
+        <config>
+            <hook_name>GeSHi</hook_name>
+            <hook_desc>Replaces Prettify with GeSHi</hook_desc>
+            <hook_author>Philip Lawrence</hook_author>
+            <hook_email>philip@misterphilip.com</hook_email>
+            <hook_website><![CDATA[http://misterphilip.com/ipb.php?action=view&amp;product=GeSHi]]></hook_website>
+            <hook_update_check><![CDATA[http://misterphilip.com/ipb.php?update=view&amp;product=GeSHi]]></hook_update_check>
+            <hook_requirements><![CDATA[a:3:{s:21:"required_applications";a:0:{}s:20:"hook_php_version_min";s:0:"";s:20:"hook_php_version_max";s:0:"";}]]></hook_requirements>
+            <hook_version_human>1.0.0</hook_version_human>
+            <hook_version_long>10002</hook_version_long>
+            <hook_extra_data><![CDATA[a:3:{s:7:"display";a:2:{s:8:"settings";s:30:"Setting groups: GeSHi Settings";s:3:"css";s:17:"CSS Files:  geshi";}s:13:"settingGroups";a:1:{i:0;s:5:"geshi";}s:3:"css";a:1:{i:0;s:5:"geshi";}}]]></hook_extra_data>
+            <hook_key>GeSHi</hook_key>
+            <hook_global_caches/>
+        </config>
+    </hookdata>
+    <hookfiles>
+        <file>
+            <hook_file_real>GeSHi_IncludeHighlighter.php</hook_file_real>
+            <hook_type>skinHooks</hook_type>
+            <hook_classname>GeSHi_IncludeHighlighter</hook_classname>
+            <hook_data><![CDATA[a:8:{s:12:"dataLocation";s:0:"";s:14:"libApplication";s:0:"";s:15:"classToOverload";s:11:"skin_global";s:9:"skinGroup";N;s:12:"skinFunction";N;s:4:"type";N;s:2:"id";N;s:8:"position";N;}]]></hook_data>
+            <hooks_source/>
+        </file>
+    </hookfiles>
+    <hookextras_settings>
+        <setting>
+            <conf_is_title>1</conf_is_title>
+            <conf_title_title>GeSHi Settings</conf_title_title>
+            <conf_title_desc>Settings for the GeSHi code highlighter</conf_title_desc>
+            <conf_title_noshow>0</conf_title_noshow>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_title_app>core</conf_title_app>
+            <conf_title_tab>System</conf_title_tab>
+        </setting>
+        <setting>
+            <conf_id>353</conf_id>
+            <conf_title>Auto-Caps</conf_title>
+            <conf_description>Auto-Caps/NoCaps is a nifty little feature that capitalises or lowercases automatically certain lexics when they are styled. QuickBASIC, a dialect of BASIC which is well known for it’s capatalisation, and SQL is another language well known for using caps for readability.</conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>dropdown</conf_type>
+            <conf_key>geshi_autoCaps</conf_key>
+            <conf_value/>
+            <conf_default>0</conf_default>
+            <conf_extra>0=Don’t change the case of any lexics, leave as they are found&#13;
+                1=Uppercase all lexics found&#13;
+                2=Lowercase all lexics found</conf_extra>
+            <conf_evalphp/>
+            <conf_protected>1</conf_protected>
+            <conf_position>9</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>347</conf_id>
+            <conf_title>Enable URLs to functions</conf_title>
+            <conf_description><![CDATA[GeSHi provides the option to link function names (such as in PHP, fopen( .. ) would link to <a href="http://php.net/fopen">http://php.net/fopen</a>. These links are safe to use and can be considered helpful for users.]]></conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>yes_no</conf_type>
+            <conf_key>geshi_clickableURL</conf_key>
+            <conf_value/>
+            <conf_default>1</conf_default>
+            <conf_extra/>
+            <conf_evalphp/>
+            <conf_protected>1</conf_protected>
+            <conf_position>4</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>355</conf_id>
+            <conf_title>Default language</conf_title>
+            <conf_description>If the user does not specify the language, what should we default to?</conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>dropdown</conf_type>
+            <conf_key>geshi_defaultLanguage</conf_key>
+            <conf_value/>
+            <conf_default>html5</conf_default>
+            <conf_extra>4cs=GADV 4CS&#13;
+                6502acme=MOS 6502 (6510) ACME Cross Assembler format&#13;
+                6502kickass=MOS 6502 (6510) Kick Assembler format&#13;
+                6502tasm=MOS 6502 (6510) TASM/64TASS 1.46 Assembler format&#13;
+                68000devpac=Motorola 68000 - HiSoft Devpac ST 2 Assembler format&#13;
+                abap=ABAP&#13;
+                actionscript=ActionScript&#13;
+                actionscript3=ActionScript 3&#13;
+                ada=Ada&#13;
+                algol68=ALGOL 68&#13;
+                apache=Apache configuration&#13;
+                applescript=AppleScript&#13;
+                apt_sources=Apt sources&#13;
+                arm=ARM ASSEMBLER&#13;
+                asm=ASM&#13;
+                asp=ASP&#13;
+                asymptote=asymptote&#13;
+                autoconf=Autoconf&#13;
+                autohotkey=Autohotkey&#13;
+                autoit=AutoIt&#13;
+                avisynth=AviSynth&#13;
+                awk=awk&#13;
+                bascomavr=BASCOM AVR&#13;
+                bash=Bash&#13;
+                basic4gl=Basic4GL&#13;
+                bf=Brainfuck&#13;
+                bibtex=BibTeX&#13;
+                blitzbasic=BlitzBasic&#13;
+                bnf=bnf&#13;
+                boo=Boo&#13;
+                c=C&#13;
+                c_loadrunner=C (LoadRunner)&#13;
+                c_mac=C (Mac)&#13;
+                caddcl=CAD DCL&#13;
+                cadlisp=CAD Lisp&#13;
+                cfdg=CFDG&#13;
+                cfm=ColdFusion&#13;
+                chaiscript=ChaiScript&#13;
+                cil=CIL&#13;
+                clojure=Clojure&#13;
+                cmake=CMake&#13;
+                cobol=COBOL&#13;
+                coffeescript=CoffeeScript&#13;
+                cpp-qt=C++ (Qt)&#13;
+                cpp=C++&#13;
+                csharp=C#&#13;
+                css=CSS&#13;
+                cuesheet=Cuesheet&#13;
+                d=D&#13;
+                dcl=DCL&#13;
+                dcpu16=DCPU-16 Assembly&#13;
+                dcs=DCS&#13;
+                delphi=Delphi&#13;
+                diff=Diff&#13;
+                div=DIV&#13;
+                dos=DOS&#13;
+                dot=dot&#13;
+                e=E&#13;
+                ecmascript=ECMAScript&#13;
+                eiffel=Eiffel&#13;
+                email=eMail (mbox)&#13;
+                epc=EPC&#13;
+                erlang=Erlang&#13;
+                euphoria=Euphoria&#13;
+                f1=Formula One&#13;
+                falcon=Falcon&#13;
+                fo=FO (abas-ERP)&#13;
+                fortran=Fortran&#13;
+                freebasic=FreeBasic&#13;
+                freeswitch=FreeSWITCH&#13;
+                fsharp=F#&#13;
+                gambas=GAMBAS&#13;
+                gdb=GDB&#13;
+                genero=genero&#13;
+                genie=Genie&#13;
+                gettext=GNU Gettext&#13;
+                glsl=glSlang&#13;
+                gml=GML&#13;
+                gnuplot=Gnuplot&#13;
+                go=Go&#13;
+                groovy=Groovy&#13;
+                gwbasic=GwBasic&#13;
+                haskell=Haskell&#13;
+                haxe=Haxe&#13;
+                hicest=HicEst&#13;
+                hq9plus=HQ9+&#13;
+                html4strict=HTML&#13;
+                html5=HTML5&#13;
+                icon=Icon&#13;
+                idl=Uno Idl&#13;
+                ini=INI&#13;
+                inno=Inno&#13;
+                intercal=INTERCAL&#13;
+                io=Io&#13;
+                j=J&#13;
+                java=Java&#13;
+                java5=Java(TM) 2 Platform Standard Edition 5.0&#13;
+                javascript=Javascript&#13;
+                jquery=jQuery&#13;
+                kixtart=KiXtart&#13;
+                klonec=KLone C&#13;
+                klonecpp=KLone C++&#13;
+                latex=LaTeX&#13;
+                lb=Liberty BASIC&#13;
+                ldif=LDIF&#13;
+                lisp=Lisp&#13;
+                llvm=LLVM Intermediate Representation&#13;
+                locobasic=Locomotive Basic&#13;
+                logtalk=Logtalk&#13;
+                lolcode=LOLcode&#13;
+                lotusformulas=Lotus Notes @Formulas&#13;
+                lotusscript=LotusScript&#13;
+                lscript=LScript&#13;
+                lsl2=LSL2&#13;
+                lua=Lua&#13;
+                m68k=Motorola 68000 Assembler&#13;
+                magiksf=MagikSF&#13;
+                make=GNU make&#13;
+                mapbasic=MapBasic&#13;
+                matlab=Matlab M&#13;
+                mirc=mIRC Scripting&#13;
+                mmix=MMIX&#13;
+                modula2=Modula-2&#13;
+                modula3=Modula-3&#13;
+                mpasm=Microchip Assembler&#13;
+                mxml=MXML&#13;
+                mysql=MySQL&#13;
+                nagios=Nagios&#13;
+                netrexx=NetRexx&#13;
+                newlisp=newlisp&#13;
+                nsis=NSIS&#13;
+                oberon2=Oberon-2&#13;
+                objc=Objective-C&#13;
+                objeck=Objeck Programming Language&#13;
+                ocaml-brief=OCaml (brief)&#13;
+                ocaml=OCaml&#13;
+                octave=GNU Octave&#13;
+                oobas=OpenOffice.org Basic&#13;
+                oorexx=ooRexx&#13;
+                oracle11=Oracle 11 SQL&#13;
+                oracle8=Oracle 8 SQL&#13;
+                oxygene=Oxygene (Delphi Prism)&#13;
+                oz=OZ&#13;
+                parasail=ParaSail&#13;
+                parigp=PARI/GP&#13;
+                pascal=Pascal&#13;
+                pcre=PCRE&#13;
+                per=per&#13;
+                perl=Perl&#13;
+                perl6=Perl 6&#13;
+                pf=OpenBSD Packet Filter&#13;
+                php-brief=PHP (brief)&#13;
+                php=PHP&#13;
+                pic16=PIC16&#13;
+                pike=Pike&#13;
+                pixelbender=Pixel Bender 1.0&#13;
+                pli=PL/I&#13;
+                plsql=PL/SQL&#13;
+                postgresql=PostgreSQL&#13;
+                povray=POVRAY&#13;
+                powerbuilder=PowerBuilder&#13;
+                powershell=PowerShell&#13;
+                proftpd=ProFTPd configuration&#13;
+                progress=Progress&#13;
+                prolog=Prolog&#13;
+                properties=PROPERTIES&#13;
+                providex=ProvideX&#13;
+                purebasic=PureBasic&#13;
+                pycon=Python (console mode)&#13;
+                pys60=Python for S60&#13;
+                python=Python for S60&#13;
+                q=q/kdb+&#13;
+                qbasic=QBasic/QuickBASIC&#13;
+                rails=Rails&#13;
+                rebol=REBOL&#13;
+                reg=Microsoft Registry&#13;
+                rexx=rexx&#13;
+                robots=robots.txt&#13;
+                rpmspec=RPM Specification File&#13;
+                rsplus=R / S+&#13;
+                ruby=Ruby&#13;
+                sas=SAS&#13;
+                scala=Scala&#13;
+                scheme=Scheme&#13;
+                scilab=SciLab&#13;
+                sdlbasic=sdlBasic&#13;
+                smalltalk=Smalltalk&#13;
+                smarty=Smarty&#13;
+                spark=SPARK&#13;
+                sparql=SPARQL&#13;
+                sql=SQL&#13;
+                stonescript=StoneScript&#13;
+                systemverilog=SystemVerilog&#13;
+                tcl=TCL&#13;
+                teraterm=Tera Term Macro&#13;
+                text=Text&#13;
+                thinbasic=thinBasic&#13;
+                tsql=T-SQL&#13;
+                typoscript=TypoScript&#13;
+                unicon=Unicon (Unified Extended Dialect of Icon)&#13;
+                upc=UPC&#13;
+                urbi=Urbi&#13;
+                uscript=Unreal Script&#13;
+                vala=Vala&#13;
+                vb=Visual Basic&#13;
+                vbnet=vb.net&#13;
+                vedit=Vedit macro language&#13;
+                verilog=Verilog&#13;
+                vhdl=VHDL&#13;
+                vim=Vim Script&#13;
+                visualfoxpro=Visual Fox Pro&#13;
+                visualprolog=Visual Prolog&#13;
+                whitespace=Whitespace&#13;
+                whois=Whois (RPSL format)&#13;
+                winbatch=Winbatch&#13;
+                xbasic=XBasic&#13;
+                xml=XML&#13;
+                xorg_conf=Xorg configuration&#13;
+                xpp=X++&#13;
+                yaml=YAML&#13;
+                z80=ZiLOG Z80 Assembler&#13;
+                zxbasic=ZXBasic</conf_extra>
+            <conf_evalphp/>
+            <conf_protected>1</conf_protected>
+            <conf_position>3</conf_position>
+            <conf_start_group>GeSHi Options</conf_start_group>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>350</conf_id>
+            <conf_title>Use CSS file instead of inline</conf_title>
+            <conf_description>By default GeSHi loads all styles inline with the code instead of in a stylesheet. By switching to a stylesheet, you allow the user to cache the file. However it should be noted that this file can be large if you are using a lot of languages. </conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>yes_no</conf_type>
+            <conf_key>geshi_externalCss</conf_key>
+            <conf_value/>
+            <conf_default>0</conf_default>
+            <conf_extra/>
+            <conf_evalphp/>
+            <conf_protected>1</conf_protected>
+            <conf_position>5</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>351</conf_id>
+            <conf_title>Fancy line numbers</conf_title>
+            <conf_description><![CDATA[If you wish to enable fancy line numbers, enter in the n<sup style="font-size:60%;">th</sup> line you want to be bold. To disable fancy line numbers. leave blank or set to 0.]]></conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>input</conf_type>
+            <conf_key>geshi_fancyLines</conf_key>
+            <conf_value/>
+            <conf_default>0</conf_default>
+            <conf_extra/>
+            <conf_evalphp>$value = intval( $value );</conf_evalphp>
+            <conf_protected>1</conf_protected>
+            <conf_position>7</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>349</conf_id>
+            <conf_title>Hide line numbers if no starting number</conf_title>
+            <conf_description>Should we hide the line numbers if the user gave us no starting line number, or gave 0?</conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>yes_no</conf_type>
+            <conf_key>geshi_gutter</conf_key>
+            <conf_value/>
+            <conf_default>0</conf_default>
+            <conf_extra/>
+            <conf_evalphp/>
+            <conf_protected>1</conf_protected>
+            <conf_position>6</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>352</conf_id>
+            <conf_title>Key to highlight a line</conf_title>
+            <conf_description><![CDATA[Users have the ability to highlight lines (<a href="http://qbnz.com/highlighter/geshi-doc.html#highlighting-special-lines-extra">Demo</a>) based on characters they put at the beginning of that line. <br /><br />
 For example, if "##" is the value and the following code is put in the editor:<br />
 <code><pre>&lt;?php
 ##$foo = true;
@@ -383,33 +383,33 @@ foobar('test');
 </pre></code><br />
 "$foo = true;" would be highlighted. <br /><br />
 If you wish to disable this setting set to an empty string.]]></conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>input</conf_type>
-      <conf_key>geshi_highlightKey</conf_key>
-      <conf_value/>
-      <conf_default>##</conf_default>
-      <conf_extra/>
-      <conf_evalphp>$value = trim( $value );</conf_evalphp>
-      <conf_protected>1</conf_protected>
-      <conf_position>2</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>346</conf_id>
-      <conf_title>Parse outdated bbcodes?</conf_title>
-      <conf_description><![CDATA[Should the old bbcodes (html, php, sql, xml) be parsed too?
+            <conf_group>37</conf_group>
+            <conf_type>input</conf_type>
+            <conf_key>geshi_highlightKey</conf_key>
+            <conf_value/>
+            <conf_default>##</conf_default>
+            <conf_extra/>
+            <conf_evalphp>$value = trim( $value );</conf_evalphp>
+            <conf_protected>1</conf_protected>
+            <conf_position>2</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>346</conf_id>
+            <conf_title>Parse outdated bbcodes?</conf_title>
+            <conf_description><![CDATA[Should the old bbcodes (html, php, sql, xml) be parsed too?
 <!--NOTICE-->]]></conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>yes_no</conf_type>
-      <conf_key>geshi_parseOld</conf_key>
-      <conf_value/>
-      <conf_default>0</conf_default>
-      <conf_extra/>
-      <conf_evalphp><![CDATA[if( $show == 1 )
+            <conf_group>37</conf_group>
+            <conf_type>yes_no</conf_type>
+            <conf_key>geshi_parseOld</conf_key>
+            <conf_value/>
+            <conf_default>0</conf_default>
+            <conf_extra/>
+            <conf_evalphp><![CDATA[if( $show == 1 )
 {
     if( $value == 1 )
     {
@@ -445,77 +445,77 @@ If you wish to disable this setting set to an empty string.]]></conf_description
         }
 	}
 }]]></conf_evalphp>
-      <conf_protected>1</conf_protected>
-      <conf_position>1</conf_position>
-      <conf_start_group>General Options</conf_start_group>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-    <setting>
-      <conf_id>348</conf_id>
-      <conf_title>Tab Size</conf_title>
-      <conf_description>The size of the tab, in spaces.</conf_description>
-      <conf_group>37</conf_group>
-      <conf_type>input</conf_type>
-      <conf_key>geshi_tabSize</conf_key>
-      <conf_value/>
-      <conf_default>4</conf_default>
-      <conf_extra/>
-      <conf_evalphp>$value = intval( $value );</conf_evalphp>
-      <conf_protected>1</conf_protected>
-      <conf_position>7</conf_position>
-      <conf_start_group/>
-      <conf_add_cache>1</conf_add_cache>
-      <conf_keywords/>
-      <conf_title_keyword>geshi</conf_title_keyword>
-      <conf_is_title>0</conf_is_title>
-    </setting>
-  </hookextras_settings>
-  <hookextras_language/>
-  <hookextras_modules/>
-  <hookextras_help/>
-  <hookextras_templates/>
-  <hookextras_css>
-    <css>
-      <css_updated>1357714835</css_updated>
-      <css_group>geshi</css_group>
-      <css_content>/* GeSHi Styling - mostly the same as the IPB styles */
-pre.geshi, code.geshi {
-    background-color: #fafafa !important;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -o-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -khtml-border-radius: 4px;
-    border-radius: 4px;
-    color: #000000;
-    padding: 5px;
-    border: 1px solid #c9c9c9;
-    overflow: auto;
-    margin-left: 10px;
-    font-size: 13px;
-    width: 95%;
-    margin: 1em auto;
-    padding: 1em;
-    white-space: pre-wrap;
-}
-/* GeSHi Code */</css_content>
-      <css_position>0</css_position>
-      <css_added_to>0</css_added_to>
-      <css_app/>
-      <css_app_hide>0</css_app_hide>
-      <css_attributes/>
-      <css_modules/>
-      <css_removed>0</css_removed>
-      <css_master_key>root</css_master_key>
-    </css>
-  </hookextras_css>
-  <hookextras_replacements/>
-  <hookextras_tasks/>
-  <hookextras_database_create/>
-  <hookextras_database_alter/>
-  <hookextras_database_update/>
-  <hookextras_database_insert/>
+            <conf_protected>1</conf_protected>
+            <conf_position>1</conf_position>
+            <conf_start_group>General Options</conf_start_group>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+        <setting>
+            <conf_id>348</conf_id>
+            <conf_title>Tab Size</conf_title>
+            <conf_description>The size of the tab, in spaces.</conf_description>
+            <conf_group>37</conf_group>
+            <conf_type>input</conf_type>
+            <conf_key>geshi_tabSize</conf_key>
+            <conf_value/>
+            <conf_default>4</conf_default>
+            <conf_extra/>
+            <conf_evalphp>$value = intval( $value );</conf_evalphp>
+            <conf_protected>1</conf_protected>
+            <conf_position>8</conf_position>
+            <conf_start_group/>
+            <conf_add_cache>1</conf_add_cache>
+            <conf_keywords/>
+            <conf_title_keyword>geshi</conf_title_keyword>
+            <conf_is_title>0</conf_is_title>
+        </setting>
+    </hookextras_settings>
+    <hookextras_language/>
+    <hookextras_modules/>
+    <hookextras_help/>
+    <hookextras_templates/>
+    <hookextras_css>
+        <css>
+            <css_updated>1357714835</css_updated>
+            <css_group>geshi</css_group>
+            <css_content>/* GeSHi Styling - mostly the same as the IPB styles */
+                pre.geshi, code.geshi {
+                background-color: #fafafa !important;
+                -moz-border-radius: 4px;
+                -webkit-border-radius: 4px;
+                -o-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -khtml-border-radius: 4px;
+                border-radius: 4px;
+                color: #000000;
+                padding: 5px;
+                border: 1px solid #c9c9c9;
+                overflow: auto;
+                margin-left: 10px;
+                font-size: 13px;
+                width: 95%;
+                margin: 1em auto;
+                padding: 1em;
+                white-space: pre-wrap;
+                }
+                /* GeSHi Code */</css_content>
+            <css_position>0</css_position>
+            <css_added_to>0</css_added_to>
+            <css_app/>
+            <css_app_hide>0</css_app_hide>
+            <css_attributes/>
+            <css_modules/>
+            <css_removed>0</css_removed>
+            <css_master_key>root</css_master_key>
+        </css>
+    </hookextras_css>
+    <hookextras_replacements/>
+    <hookextras_tasks/>
+    <hookextras_database_create/>
+    <hookextras_database_alter/>
+    <hookextras_database_update/>
+    <hookextras_database_insert/>
 </hookexport>
