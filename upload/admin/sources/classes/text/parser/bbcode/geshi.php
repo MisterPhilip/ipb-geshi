@@ -1,13 +1,14 @@
 <?php
 /**
- * GeSHi drop-in replacement highlighter for IP.Board v3.4.1
+ * GeSHi drop-in replacement for IP.Board v3.4.1
  *
- * @author 		Philip Lawrence
- * @copyright	(c) 2012 - 2013 Philip Lawrence
- * @license		http://www.invisionpower.com/company/standards.php#license
- * @package		IP.Board
- * @link		http://misterphilip.com
- * @version     10000
+ * @author      Philip Lawrence
+ * @copyright   (c) 2012 - 2013 Philip Lawrence
+ * @license     https://github.com/MisterPhilip/ipb-geshi/blob/master/LICENSE
+ * @package     IP.Board
+ * @link        http://misterphilip.com/ipb.php?action=view&product=GeSHi
+ * @link        https://github.com/MisterPhilip/ipb-geshi/
+ * @version     10001
  *
  */
 
@@ -17,7 +18,7 @@ if( !class_exists('bbcode_plugin_code') )
 	require_once( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/defaults.php' );/*noLibHook*/
 }
 
-// Load in GeSHi sources
+// Load in GeSHi class
 if( !class_exists('GeSHi') )
 {
 	require_once( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/sources/geshi/geshi.php' );/*noLibHook*/
@@ -25,83 +26,7 @@ if( !class_exists('GeSHi') )
 
 class bbcode_plugin_geshi extends bbcode_plugin_code
 {
-    /**
-     * Default Language
-     *
-     * Populate this with the default language (if they choose auto or select a language not in the allowed langauges array)
-     *
-     * @var string
-     * @protected
-     */
-    protected $_defaultLanguage = 'html5';
-    
-    /**
-     * Allowed Languages
-     * 
-     * Populate this array with GeSHi values you plan on allowing
-     * There should be a corresponding file within the "sources/geshi/languages/[language].php" dir
-     *
-     * @var array
-     * @protected
-     */
-    protected $_allowedLanguages = array( 
-        '4cs', '6502acme', '6502kickass', '6502tasm', '68000devpac', 'abap', 'actionscript', 'actionscript3', 
-        'ada', 'algol68', 'apache', 'applescript', 'apt_sources', 'arm', 'asm', 'asp', 'asymptote', 'autoconf', 
-        'autohotkey', 'autoit', 'avisynth', 'awk', 'bascomavr', 'bash', 'basic4gl', 'bf', 'bibtex', 'blitzbasic', 
-        'bnf', 'boo', 'c', 'c_loadrunner', 'c_mac', 'caddcl', 'cadlisp', 'cfdg', 'cfm', 'chaiscript', 'cil', 
-        'clojure', 'cmake', 'cobol', 'coffeescript', 'cpp-qt', 'cpp', 'csharp', 'css', 'cuesheet', 'd', 'dcl', 
-        'dcpu16', 'dcs', 'delphi', 'diff', 'div', 'dos', 'dot', 'e', 'ecmascript', 'eiffel', 'email', 'epc', 
-        'erlang', 'euphoria', 'f1', 'falcon', 'fo', 'fortran', 'freebasic', 'freeswitch', 'fsharp', 'gambas', 
-        'gdb', 'genero', 'genie', 'gettext', 'glsl', 'gml', 'gnuplot', 'go', 'groovy', 'gwbasic', 'haskell', 
-        'haxe', 'hicest', 'hq9plus', 'html4strict', 'html5', 'icon', 'idl', 'ini', 'inno', 'intercal', 'io', 
-        'j', 'java', 'java5', 'javascript', 'jquery', 'kixtart', 'klonec', 'klonecpp', 'latex', 'lb', 'ldif', 
-        'lisp', 'llvm', 'locobasic', 'logtalk', 'lolcode', 'lotusformulas', 'lotusscript', 'lscript', 'lsl2', 
-        'lua', 'm68k', 'magiksf', 'make', 'mapbasic', 'matlab', 'mirc', 'mmix', 'modula2', 'modula3', 'mpasm', 
-        'mxml', 'mysql', 'nagios', 'netrexx', 'newlisp', 'nsis', 'oberon2', 'objc', 'objeck', 'ocaml-brief', 
-        'ocaml', 'octave', 'oobas', 'oorexx', 'oracle11', 'oracle8', 'oxygene', 'oz', 'parasail', 'parigp', 
-        'pascal', 'pcre', 'per', 'perl', 'perl6', 'pf', 'php-brief', 'php', 'pic16', 'pike', 'pixelbender', 
-        'pli', 'plsql', 'postgresql', 'povray', 'powerbuilder', 'powershell', 'proftpd', 'progress', 'prolog', 
-        'properties', 'providex', 'purebasic', 'pycon', 'pys60', 'python', 'q', 'qbasic', 'rails', 'rebol', 'reg', 
-        'rexx', 'robots', 'rpmspec', 'rsplus', 'ruby', 'sas', 'scala', 'scheme', 'scilab', 'sdlbasic', 'smalltalk', 
-        'smarty', 'spark', 'sparql', 'sql', 'stonescript', 'systemverilog', 'tcl', 'teraterm', 'text', 'thinbasic', 
-        'tsql', 'typoscript', 'unicon', 'upc', 'urbi', 'uscript', 'vala', 'vb', 'vbnet', 'vedit', 'verilog', 
-        'vhdl', 'vim', 'visualfoxpro', 'visualprolog', 'whitespace', 'whois', 'winbatch', 'xbasic', 'xml', 
-        'xorg_conf', 'xpp', 'yaml', 'z80', 'zxbasic',
-    );
-    
-    /**
-     * Fancy line numbers
-     * 
-     * If you'd like to use fancy numbers, specify the nth line number
-     * Otherwise, use false to disable fancy line numbers
-     *
-     * @var mixed
-     * @protected
-     */
-    protected $_fancyLineNumber = false;
-    
-    /**
-     * Use CSS classes 
-     * 
-     * If you populate this as true, GeSHi will use CSS classes instead of inline code
-     *
-     * @var bool
-     * @protected
-     */
-    protected $_useCssClasses = false;
-    
-    /**
-     * Additional CSS Class (wrapper)
-     * 
-     * If you populate this with a non-empty string, it will output these classes on the <pre> tag.
-     * The language is automatically included within the class.
-     *
-     * @var string
-     * @protected
-     */
-    protected $_overallCssClass = 'foobar';
-    
-    
+
     /**
      * {@inherit}
      */
@@ -141,7 +66,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         // Convert old tag (and outdated tags) to the new code tag
         $oldTags = array( );
         
-        if( $this->settings['codesyntax_parseOld'] )
+        if( $this->settings['geshi_parseOld'] )
             $oldTags = array_merge( $oldTags, array( 'html', 'php', 'sql', 'xml' ) );
         
         foreach( $this->_retrieveTags() as $tag)
@@ -175,9 +100,6 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
                 $tagEnd = strpos( $txt, '>', $tags['openWithTag'][ $id ] );
                 $openTag = substr( $txt, $tags['openWithTag'][ $id ], ( $tagEnd - $tags['openWithTag'][ $id ] + 1) );
                 
-                $origLength = $tags['closeWithTag'][ $id ] - $tags['openWithTag'][ $id ];
-                
-                
                 $lang = 'php';
                 $line = 0;
                 
@@ -186,11 +108,10 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
                     
                 if( preg_match( '#_linenums:(\d+)#i', $openTag, $matches ) )
                     $line = $matches[1];
-                
-                $content = html_entity_decode( substr( $txt, $tags['open'][ $id ], ( $tags['close'][ $id ] - $tags['open'][ $id ] ) ) );
+
+                $content = substr( $txt, $tags['open'][ $id ], ( $tags['close'][ $id ] - $tags['open'][ $id ] ) );
+
                 $content = $this->_colorfy( $content, array( 'lang' => $lang, 'lineNum' => $line ) );
-                
-                $newLength = strlen( $content );
                 
                 $txt = substr_replace( $txt, $content, $tags['openWithTag'][ $id ], ( $tags['closeWithTag'][ $id ] - $tags['openWithTag'][ $id ] ) );
                 
@@ -246,10 +167,22 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
 	 * @return	string			       GeSHi'd content
 	 */
 	protected function _colorfy( $content, array $options )
-	{
-        // Revert some of IPB's doings
-        $content = html_entity_decode( $content );
-        
+    {
+        // Grab the languages ------------------------------------------------------------------------------------------
+        // Check to see if we can load the default language or not
+        $language = $this->settings['geshi_defaultLanguage'];
+
+        if( $this->_isLanguageAvailable( $language ) === false )
+        {
+            if( $this->_isLanguageAvailable( 'html5' ) === false )
+            {
+                return $content;
+            }
+
+            // phew, we still have a default.
+            $language = 'html5';
+        }
+
         // Convert the languages from the current editor
         switch( $options['lang'] )
         {
@@ -257,57 +190,140 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
                 $options['lang'] = 'javascript';
             break;
             case 'html':
+                // Default to HTML5, unless specified otherwise
                 $options['lang'] = 'html5';
             break;
             case 'auto':
-                $this->_defaultLanguage;
             break;
             default:
                 // Nothing to do here, we'll check in just a second on these
             break;
         }
-        
-        // Verify we have the language in the array
-        if( ! in_array( $options['lang'], $this->_allowedLanguages ) )
+
+        if( $this->_isLanguageAvailable( $options['lang'] ) !== false )
         {
-            $options['lang'] = $this->_defaultLanguage;
+            // We have this language available, let's use it.
+            $language = $this->_isLanguageAvailable( $options['lang'] );
         }
+
+        // Start the content -------------------------------------------------------------------------------------------
+        $content = html_entity_decode( $content );
+        $geshi = new GeSHi( $content , $language );
         
-        // Load up GeSHi
-        $geshi = new GeSHi( $content , $options['lang'] );
-        
-        // Parse any settings
+        // Parse any settings ------------------------------------------------------------------------------------------
+        // -> Basics
         $geshi->set_header_type( GESHI_HEADER_PRE );
-        if( $this->_useCssClasses )
+        $geshi->set_overall_class( 'geshi_block' );
+        $geshi->enable_strict_mode( false );
+
+        // -> URLs on Functions?
+        if( $this->settings['geshi_clickableURL'] )
+        {
+            $geshi->enable_keyword_links( false );
+        }
+
+        // -> External stylesheet?
+        if( $this->settings['geshi_externalCss']  )
         {
             $geshi->enable_classes();
         }
-        
-        $this->_overallCssClass .= ' geshi';
-        $geshi->set_overall_class( $this->_overallCssClass );
-        
-        // Line numbers
-        $lineNums = intval( $options['lineNum'] );
-        if( $lineNums > 0 )
+
+        // -> Tab Size
+        if( $this->settings['geshi_tabSize'] > 0 )
         {
-            // Check to see if we need to use "fancy" numbering
-            if( $this->_fancyLineNumber !== false )
+            $geshi->set_tab_width( $this->settings['geshi_tabSize'] );
+        }
+
+        // -> AuTo-CaPs
+        if( $this->settings['geshi_autoCaps'] == 1 )
+        {
+            $geshi->set_case_keywords( GESHI_CAPS_UPPER );
+        }
+        else if( $this->settings['geshi_autoCaps'] == 2 )
+        {
+            $geshi->set_case_keywords( GESHI_CAPS_LOWER );
+        }
+
+        // -> Line numbers
+        $startingLine = intval( $options['lineNum'] );
+        if( ! $this->settings['geshi_gutter'] || $startingLine > 0 )
+        {
+            // The admin wants the gutter to be displayed at all times, starting line number will be 1 if it doesn't exist
+            if( $startingLine == 0 )
             {
-                $geshi->enable_line_numbers( GESHI_FANCY_LINE_NUMBERS, intval( $this->_fancyLineNumber ) );
+                $startingLine = 1;
+            }
+
+            // Check to see if we need to use "fancy" numbering
+            if( $this->settings['geshi_fancyLines'] != 0 )
+            {
+                $geshi->set_line_style( 'font-weight: normal' );
+                $geshi->enable_line_numbers( GESHI_FANCY_LINE_NUMBERS, $this->settings['geshi_fancyLines'] );
             }
             else
             {
+                $geshi->set_line_style( 'font-weight: normal', 'font-weight: bold' );
                 $geshi->enable_line_numbers( GESHI_NORMAL_LINE_NUMBERS );
             }
-            $geshi->start_line_numbers_at( $lineNums );
+            $geshi->start_line_numbers_at( $startingLine );
         }
         else
         {
             $geshi->enable_line_numbers( GESHI_NO_LINE_NUMBERS );
         }
-        
+
+        // -> Finally, highlight anything?
+        if( $this->settings['geshi_highlightKey'] != '' && strpos( $content, $this->settings['geshi_highlightKey'] ) !== false )
+        {
+            $highlightLines = array();
+            $currentLine = ( $startingLine == 0 ) ? 1 : $startingLine;
+            $lengthOfKey = strlen( $this->settings['geshi_highlightKey'] );
+
+            // @TODO: Clean this up, find a way to use less memory on large posts
+            $contentArray = explode( PHP_EOL, $content );
+            $content = '';
+            foreach( $contentArray as $line )
+            {
+                if( strpos( $line, $this->settings['geshi_highlightKey'] ) === 0 )
+                {
+                    $highlightLines[ ] = $currentLine;
+                    $line = substr( $line, $lengthOfKey );  // Remove the highlight key from the beginning
+                }
+                $content.= $line . PHP_EOL;
+                $currentLine++;
+            }
+
+            if( count( $highlightLines ) > 0 )
+            {
+                $geshi->highlight_lines_extra( $highlightLines );
+            }
+        }
+
+        // Finish him! ( http://youtu.be/_hHDxlm66dE )------------------------------------------------------------------
+        $content = $geshi->parse_code();
+
+        // Force IPB to NOT parse URLs
+        $content = preg_replace( '#(https|http|ftp)://#' , '\1&#58;//', $content );
+
         // Return our parsed code
-		return $geshi->parse_code();
+		return $content;
 	}
+
+    /**
+     * Check to make sure the language file exists
+     *
+     * @param $language
+     * @return bool|mixed
+     */
+    protected function _isLanguageAvailable( $language )
+    {
+        // Clean up the language name in case of naughtiness
+        $language = strtolower( preg_replace( "/[^a-zA-Z0-9]+/", "", $language ) );
+        if( ! is_file( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/sources/geshi/languages/' . $language . '.php' ) )
+        {
+            return false;
+        }
+        return $language;
+    }
 
 }
