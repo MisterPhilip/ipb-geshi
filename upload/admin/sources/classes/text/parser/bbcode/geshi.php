@@ -212,7 +212,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         if( $this->settings['geshi_highlightKey'] != '' && strpos( $content, $this->settings['geshi_highlightKey'] ) !== false )
         {
             $highlightLines = array();
-            $currentLine = ( $startingLine == 0 ) ? 1 : $startingLine;
+            $currentLine = 1;
             $lengthOfKey = strlen( $this->settings['geshi_highlightKey'] );
 
             // @TODO: Clean this up, find a way to use less memory on large posts
