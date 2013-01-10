@@ -451,7 +451,7 @@ class GeSHi {
      *  The style for the actual code
      * @var string
      */
-    var $code_style = 'font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none;';
+    var $code_style = 'font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;';
 
     /**
      * The overall class for this code block
@@ -469,19 +469,19 @@ class GeSHi {
      * Line number styles
      * @var string
      */
-    var $line_style1 = 'font-weight: normal;';
+    var $line_style1 = 'font-weight: normal; vertical-align:top;';
 
     /**
      * Line number styles for fancy lines
      * @var string
      */
-    var $line_style2 = 'font-weight: bold;';
+    var $line_style2 = 'font-weight: bold; vertical-align:top;';
 
     /**
      * Style for line numbers when GESHI_HEADER_PRE_TABLE is chosen
      * @var string
      */
-    var $table_linenumber_style = 'width:1px;text-align:right;margin:0;padding:0 2px;';
+    var $table_linenumber_style = 'width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;';
 
     /**
      * Flag for how line numbers are displayed
@@ -3899,11 +3899,14 @@ class GeSHi {
                         $def_attr = ' class="de2"';
                     } else {
                         //$attr = ' style="' . $this->line_style2 . '"';
-                        $attrs['style'][] = $this->line_style2;
-                        // This style "covers up" the special styles set for special lines
-                        // so that styles applied to special lines don't apply to the actual
-                        // code on that line
-                        $def_attr = ' style="' . $this->code_style . '"';
+                        if($this->line_style2 != '' )
+                        {
+                            $attrs['style'][] = $this->line_style2;
+                            // This style "covers up" the special styles set for special lines
+                            // so that styles applied to special lines don't apply to the actual
+                            // code on that line
+                            $def_attr = ' style="' . $this->code_style . '"';
+                        }
                     }
                 } else {
                     if ($this->use_classes) {
@@ -3911,9 +3914,12 @@ class GeSHi {
                         $attrs['class'][] = 'li1';
                         $def_attr = ' class="de1"';
                     } else {
-                        //$attr = ' style="' . $this->line_style1 . '"';
-                        $attrs['style'][] = $this->line_style1;
-                        $def_attr = ' style="' . $this->code_style . '"';
+                        if( $this->line_style1 != '')
+                        {
+                            //$attr = ' style="' . $this->line_style1 . '"';
+                            $attrs['style'][] = $this->line_style1;
+                            $def_attr = ' style="' . $this->code_style . '"';
+                        }
                     }
                 }
 
@@ -3942,7 +3948,7 @@ class GeSHi {
                         } else {
                             $attrs['class'][] = "ln-xtra";
                         }
-                    } else {
+                    } else if ( $this->get_line_style($i) != '' ) {
                         array_push($attrs['style'], $this->get_line_style($i));
                     }
                 }
