@@ -13,9 +13,9 @@ Installation of the [GeSHi](http://qbnz.com/highlighter/) code is fairly straigh
     1. `bbcode_GeSHi.xml` is a BB Code replacement for the code bbcode.
     You should delete that bbcode (if IN_DEV) and install this one. Alternatively, you can change the
     following items in the default code bbcode:
-        * "Custom BBCode Tag": codesyntax
+        * "Custom BBCode Tag": geshi
         * "Custom BBCode Aliases": code,codebox
-        * "OR PHP file to execute": codesyntax.php
+        * "OR PHP file to execute": geshi.php
     1. `hook_GeSHi.xml` is a hook that replaces the prettify code with the GeSHi code.
     This also adds in the settings within the admin interface.  You should install this like you would for any other hook
     (`Applications & Modules  >  Manage Hooks > Install Hook`)
