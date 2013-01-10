@@ -242,6 +242,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         $geshi->enable_strict_mode( false );
         $geshi->set_overall_style( '' );
         $geshi->set_code_style( '' );
+        $geshi->set_line_style( '', 'font-weight: bold;color:#777;' ); // Remove unnecessary markup
         $geshi->set_highlight_lines_extra_style( 'background-color: #ffc;color:red;' );
 
         // -> URLs on Functions?
@@ -284,13 +285,11 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
             // Check to see if we need to use "fancy" numbering
             if( $this->settings['geshi_fancyLines'] != 0 )
             {
-                $geshi->set_line_style( '', 'font-weight: bold;color:#777;' ); // Remove unnecessary markup
                 $geshi->set_code_style( 'font-weight: normal' );
                 $geshi->enable_line_numbers( GESHI_FANCY_LINE_NUMBERS, $this->settings['geshi_fancyLines'] );
             }
             else
             {
-                $geshi->set_line_style( '' ); // Remove unnecessary markup
                 $geshi->enable_line_numbers( GESHI_NORMAL_LINE_NUMBERS );
             }
             $geshi->start_line_numbers_at( $startingLine );
