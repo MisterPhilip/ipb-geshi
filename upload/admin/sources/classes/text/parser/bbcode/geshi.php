@@ -246,7 +246,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         $geshi->set_highlight_lines_extra_style( 'background-color: #ffc;color:red;' );
 
         // -> URLs on Functions?
-        if( $this->settings['geshi_clickableURL'] )
+        if( ! $this->settings['geshi_clickableURL'] )
         {
             $geshi->enable_keyword_links( false );
         }
