@@ -8,20 +8,20 @@
  * @package     IP.Board
  * @link        http://misterphilip.com/ipb.php?action=view&product=GeSHi
  * @link        https://github.com/MisterPhilip/ipb-geshi/
- * @version     10001
+ * @version     10002
  *
  */
 
 // Load in the current plugin class
 if( !class_exists('bbcode_plugin_code') )
 {
-	require_once( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/defaults.php' );/*noLibHook*/
+    require_once( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/defaults.php' );/*noLibHook*/
 }
 
 // Load in GeSHi class
 if( !class_exists('GeSHi') )
 {
-	require_once( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/sources/geshi/geshi.php' );/*noLibHook*/
+    require_once( IPS_ROOT_PATH . 'sources/classes/text/parser/bbcode/sources/geshi/geshi.php' );/*noLibHook*/
 }
 
 class bbcode_plugin_geshi extends bbcode_plugin_code
@@ -158,15 +158,15 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
     }
     
 
-	/**
-	 * GeSHi the code
-	 *
-	 * @access	protected
-	 * @param	string      $content   Content to prettify
-	 * @param	array       $options   [Optional] code options
-	 * @return	string			       GeSHi'd content
-	 */
-	protected function _colorfy( $content, array $options )
+    /**
+     * GeSHi the code
+     *
+     * @access    protected
+     * @param    string      $content   Content to prettify
+     * @param    array       $options   [Optional] code options
+     * @return    string                   GeSHi'd content
+     */
+    protected function _colorfy( $content, array $options )
     {
         // Grab the languages ------------------------------------------------------------------------------------------
         // Check to see if we can load the default language or not
@@ -186,7 +186,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         // Convert the languages from the current editor
         switch( $options['lang'] )
         {
-            case 'js': 
+            case 'js':
                 $options['lang'] = 'javascript';
             break;
             case 'html':
@@ -205,8 +205,33 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
             // We have this language available, let's use it.
             $language = $this->_isLanguageAvailable( $options['lang'] );
         }
+        $startingLine = intval( $options['lineNum'] );
 
         // Start the content -------------------------------------------------------------------------------------------
+        // -> Check for highlights, since we'll need to replace the keys
+        if( $this->settings['geshi_highlightKey'] != '' && strpos( $content, $this->settings['geshi_highlightKey'] ) !== false )
+        {
+            $highlightLines = array();
+            $currentLine = ( $startingLine == 0 ) ? 1 : $startingLine;
+            $lengthOfKey = strlen( $this->settings['geshi_highlightKey'] );
+
+            // @TODO: Clean this up, find a way to use less memory on large posts
+            $contentArray = explode( PHP_EOL, $content );
+            $content = '';
+            foreach( $contentArray as $line )
+            {
+                if( strpos( $line, $this->settings['geshi_highlightKey'] ) === 0 )
+                {
+                    $highlightLines[ ] = $currentLine;
+                    $line = substr( $line, $lengthOfKey );  // Remove the highlight key from the beginning
+                }
+                $content.= $line . PHP_EOL;
+                $currentLine++;
+            }
+
+        }
+
+
         $content = html_entity_decode( $content );
         $geshi = new GeSHi( $content , $language );
         
@@ -217,6 +242,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         $geshi->enable_strict_mode( false );
         $geshi->set_overall_style( '' );
         $geshi->set_code_style( '' );
+        $geshi->set_highlight_lines_extra_style( 'background-color: #ffc;color:red;' );
 
         // -> URLs on Functions?
         if( $this->settings['geshi_clickableURL'] )
@@ -247,7 +273,6 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         }
 
         // -> Line numbers
-        $startingLine = intval( $options['lineNum'] );
         if( ! $this->settings['geshi_gutter'] || $startingLine > 0 )
         {
             // The admin wants the gutter to be displayed at all times, starting line number will be 1 if it doesn't exist
@@ -275,31 +300,10 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
             $geshi->enable_line_numbers( GESHI_NO_LINE_NUMBERS );
         }
 
-        // -> Finally, highlight anything?
-        if( $this->settings['geshi_highlightKey'] != '' && strpos( $content, $this->settings['geshi_highlightKey'] ) !== false )
+        // -> Finally, put those highlighted lines to use
+        if( $this->settings['geshi_highlightKey'] != '' && count( $highlightLines ) > 0 )
         {
-            $highlightLines = array();
-            $currentLine = ( $startingLine == 0 ) ? 1 : $startingLine;
-            $lengthOfKey = strlen( $this->settings['geshi_highlightKey'] );
-
-            // @TODO: Clean this up, find a way to use less memory on large posts
-            $contentArray = explode( PHP_EOL, $content );
-            $content = '';
-            foreach( $contentArray as $line )
-            {
-                if( strpos( $line, $this->settings['geshi_highlightKey'] ) === 0 )
-                {
-                    $highlightLines[ ] = $currentLine;
-                    $line = substr( $line, $lengthOfKey );  // Remove the highlight key from the beginning
-                }
-                $content.= $line . PHP_EOL;
-                $currentLine++;
-            }
-
-            if( count( $highlightLines ) > 0 )
-            {
-                $geshi->highlight_lines_extra( $highlightLines );
-            }
+            $geshi->highlight_lines_extra( $highlightLines );
         }
 
         // Finish him! ( http://youtu.be/_hHDxlm66dE )------------------------------------------------------------------
@@ -309,8 +313,8 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         $content = preg_replace( '#(https|http|ftp)://#' , '\1&#58;//', $content );
 
         // Return our parsed code
-		return $content;
-	}
+        return $content;
+    }
 
     /**
      * Check to make sure the language file exists

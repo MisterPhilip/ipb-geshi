@@ -31,6 +31,10 @@
  * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
  * @license    http://gnu.org/copyleft/gpl.html GNU GPL
  *
+ * Updated for the IPB GeSHi plugin
+ * @author Philip Lawrence <philip@misterphilip.com>
+ * @link http://misterphilip.com
+ * @link https://github.com/MisterPhilip/ipb-geshi
  */
 
 //
@@ -3949,7 +3953,10 @@ class GeSHi {
                             $attrs['class'][] = "ln-xtra";
                         }
                     } else if ( $this->get_line_style($i) != '' ) {
-                        array_push($attrs['style'], $this->get_line_style($i));
+                        if( isset( $attrs['style'] ) && is_array( $attrs['style'] ) )
+                            array_push($attrs['style'], $this->get_line_style($i));
+                        else
+                            $attrs['style'][] = $this->get_line_style( $i );
                     }
                 }
 

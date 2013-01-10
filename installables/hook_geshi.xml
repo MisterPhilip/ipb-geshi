@@ -10,7 +10,7 @@
             <hook_update_check><![CDATA[http://misterphilip.com/ipb.php?update=view&amp;product=GeSHi]]></hook_update_check>
             <hook_requirements><![CDATA[a:3:{s:21:"required_applications";a:0:{}s:20:"hook_php_version_min";s:0:"";s:20:"hook_php_version_max";s:0:"";}]]></hook_requirements>
             <hook_version_human>1.0.0</hook_version_human>
-            <hook_version_long>10002</hook_version_long>
+            <hook_version_long>10003</hook_version_long>
             <hook_extra_data><![CDATA[a:3:{s:7:"display";a:2:{s:8:"settings";s:30:"Setting groups: GeSHi Settings";s:3:"css";s:17:"CSS Files:  geshi";}s:13:"settingGroups";a:1:{i:0;s:5:"geshi";}s:3:"css";a:1:{i:0;s:5:"geshi";}}]]></hook_extra_data>
             <hook_key>GeSHi</hook_key>
             <hook_global_caches/>
@@ -479,29 +479,60 @@ If you wish to disable this setting set to an empty string.]]></conf_description
     <hookextras_templates/>
     <hookextras_css>
         <css>
-            <css_updated>1357714835</css_updated>
+            <css_updated>1357792999</css_updated>
             <css_group>geshi</css_group>
-            <css_content>/* GeSHi Styling - mostly the same as the IPB styles */
-                pre.geshi, code.geshi {
-                background-color: #fafafa !important;
-                -moz-border-radius: 4px;
-                -webkit-border-radius: 4px;
-                -o-border-radius: 4px;
-                -ms-border-radius: 4px;
-                -khtml-border-radius: 4px;
-                border-radius: 4px;
-                color: #000000;
-                padding: 5px;
-                border: 1px solid #c9c9c9;
-                overflow: auto;
-                margin-left: 10px;
-                font-size: 13px;
-                width: 95%;
-                margin: 1em auto;
-                padding: 1em;
-                white-space: pre-wrap;
-                }
-                /* GeSHi Code */</css_content>
+            <css_content><![CDATA[/* GeSHi Styling - mostly the same as the IPB styles */
+pre.geshi_block,
+code.geshi_block
+{
+    background-color: #fafafa !important;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    color: #000000;
+    padding: 5px;
+    border: 1px solid #c9c9c9;
+    overflow: auto;
+    margin-left: 10px;
+    font-size: 13px;
+    width: 95%;
+    white-space: pre-wrap;
+    font-family: Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
+}
+.post.entry-content pre.geshi_block > ul li,
+.post.entry-content pre.geshi_block > ol li,
+.post.entry-content code.geshi_block > ul li,
+.post.entry-content code.geshi_block > ol li
+{
+    color: #AAA;
+    border-left: 1px solid #EEE;
+    padding-left: 5px;
+}
+.post.entry-content pre.geshi_block > ul li > div,
+.post.entry-content pre.geshi_block > ol li > div,
+.post.entry-content code.geshi_block > ul li > div,
+.post.entry-content code.geshi_block > ol li > div
+{
+    color: #222;
+}
+.post.entry-content pre.geshi_block > ul li:nth-child(even),
+.post.entry-content pre.geshi_block > ol li:nth-child(even),
+.post.entry-content code.geshi_block > ul li:nth-child(even),
+.post.entry-content code.geshi_block > ol li:nth-child(even)
+{
+    background-color: #f5f5f5;
+}
+.post.entry-content pre.geshi_block > ul,
+.post.entry-content pre.geshi_block > ol,
+.post.entry-content code.geshi_block > ul,
+.post.entry-content code.geshi_block > ol
+{
+    margin: 5px 5px 0 45px !important;
+}
+/* GeSHi Code */]]></css_content>
             <css_position>0</css_position>
             <css_added_to>0</css_added_to>
             <css_app/>

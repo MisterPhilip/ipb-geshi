@@ -40,15 +40,19 @@ Although there are descriptions for each, here are all of the following settings
  extra bloat if your visitors view a lot of code. However, the trade off is that the CSS files can become quite large if
  you generate it for a lot of languages. For example, if you were to leave all of the languages in and generate a CSS file,
  you'd end up with a 100kb CSS file. It's likely that your visitors would rarely use a lot of the languages, but I've
- included them for your convenience. (Default: no)
+ included them for your convenience. If you change this, you'll likely need to reset your post cache to take effect.
+ (Default: no)
  * **Hide line numbers if no starting number**: If there are no line numbers, or if the starting line number is "0" and this is
- enabled, the line numbers will be completely disabled. By default this is disabled (Default: no).
+ enabled, the line numbers will be completely disabled. By default this is disabled. If you change this, you'll likely
+ need to reset your post cache to take effect. (Default: no).
  * **Fancy line numbers**: If you wish to have every nth line number be bold, you should enter the nth line number here.
- Otherwise, you can change this to 0 to disable this feature (Default: 0).
+ Otherwise, you can change this to 0 to disable this feature. If you change this, you'll likely need to reset your
+ post cache to take effect. (Default: 0).
  * **Tab size**: This should be the number of spaces is equal to one tab. (Default: 4)
  * **Smart Tabs**: This enables smart tabs (I still have yet to figure out what these do.) Default is disabled (No).
  * **Auto-Caps**: [Auto-caps](http://qbnz.com/highlighter/geshi-doc.html#auto-caps-nocaps) is a feature in GeSHi that
- will upper/lowercase user's code based on the language's lexics. (Default: Don't change)
+ will upper/lowercase user's code based on the language's lexics. If you change this, you'll likely need to reset your
+ post cache to take effect.(Default: Don't change)
 
 ## Styling
 
@@ -70,3 +74,16 @@ a 100kb CSS file.
 
  * GeSHi cannot automatically detect the language, unlike prettify.
  * By default, if the language cannot be found and the default cannot load, it will return `<pre>{content}</pre>` safely.
+ * Some parts of the GeSHi code were changed for perfomance reasons (e.g. you don't need to load `style=""` when you don't
+ provide a style.) If you update the libraries it will not break it, just include extra unnecessary html markup.
+
+## Todos
+
+You can find the full list of todos in the [issue tracker](https://github.com/MisterPhilip/ipb-geshi/issues), however a
+quick overview is below:
+
+ * Add flexibility around the languages in the admin interface / editor dialog
+ * Allow admins to set the default line styles (e.g. line highlight, fancy lines)
+ * Include toolbar for copying / printing / viewing raw code.
+ * Likely a separate, but related project: optionally include something like [CodeMirror](http://codemirror.net/) on
+ the editor.
