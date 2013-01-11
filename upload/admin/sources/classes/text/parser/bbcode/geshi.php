@@ -8,7 +8,7 @@
  * @package     IP.Board
  * @link        http://misterphilip.com/ipb.php?action=view&product=GeSHi
  * @link        https://github.com/MisterPhilip/ipb-geshi/
- * @version     10002
+ * @version     10003
  *
  */
 
@@ -34,7 +34,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
     {
         $this->currentBbcode    = 'geshi';
         $this->_parent          = $_parent;
-        
+
         // Do what is normally done in the parent __construct
         // We can't call parent::__construct since bbcode_plugin_code would overwrite the currentBbcode
         $this->registry        =  $registry;
@@ -46,14 +46,14 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         $this->memberData      =& $this->registry->member()->fetchMemberData();
         $this->cache           =  $this->registry->cache();
         $this->caches          =& $this->registry->cache()->fetchCaches();
-        
+
         $this->_parentBBcode = $_parent;
-        
+
         /* Retrieve bbcode data */
         $bbcodeCache    = $this->cache->getCache('bbcode');
         $this->_bbcode  = $bbcodeCache[ $this->currentBbcode ];
     }
-    
+
     /**
      * Do the actual replacement
      *
@@ -65,10 +65,10 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
     {
         // Convert old tag (and outdated tags) to the new code tag
         $oldTags = array( );
-        
+
         if( $this->settings['geshi_parseOld'] )
             $oldTags = array_merge( $oldTags, array( 'html', 'php', 'sql', 'xml' ) );
-        
+
         foreach( $this->_retrieveTags() as $tag)
         {
             if( in_array( $tag, $oldTags ) )
@@ -79,12 +79,12 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
             {
                 $lang = 'auto';
             }
-            
+
             if ( stristr( $txt, '[' . $tag . ']' ) )
             {
                 $txt = str_ireplace( '[' . $tag . ']', '[code=' . $lang . ':0]', $txt );
-            } 
-                
+            }
+
             if ( $tag != 'code' && stristr( $txt, '[/' . $tag . ']' ) )
             {
                 $txt = str_ireplace( '[/' . $tag . ']', '[/code]', $txt );
@@ -94,56 +94,56 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         if( stristr( $txt, '_prettyXPrint' ) )
         {
             $tags = $this->_parent->getTagPositions( $txt, 'pre', array( '<' , '>' ) );
-            
+
             foreach( $tags['open'] as $id => $val )
             {
                 $tagEnd = strpos( $txt, '>', $tags['openWithTag'][ $id ] );
                 $openTag = substr( $txt, $tags['openWithTag'][ $id ], ( $tagEnd - $tags['openWithTag'][ $id ] + 1) );
-                
+
                 $lang = 'php';
                 $line = 0;
-                
+
                 if( preg_match( '#_lang-(\w+)#i', $openTag, $matches ) )
                     $lang = $matches[1];
-                    
+
                 if( preg_match( '#_linenums:(\d+)#i', $openTag, $matches ) )
                     $line = $matches[1];
 
                 $content = substr( $txt, $tags['open'][ $id ], ( $tags['close'][ $id ] - $tags['open'][ $id ] ) );
 
                 $content = $this->_colorfy( $content, array( 'lang' => $lang, 'lineNum' => $line ) );
-                
+
                 $txt = substr_replace( $txt, $content, $tags['openWithTag'][ $id ], ( $tags['closeWithTag'][ $id ] - $tags['openWithTag'][ $id ] ) );
-                
+
                 // Update all lengths (we're cheating here!)
                 $tags = $this->_parent->getTagPositions( $txt, 'pre', array( '<' , '>' ) );
             }
         }
-        
+
         // Run the existing for bbcode versions
         parent::_replaceText( $txt );
-        
+
         // Return the awesome looking code
         return $txt;
     }
-    
+
     /**
      * {@inherit}
      */
     protected function _buildOutput( $content, $option )
     {
         // This is the original, used for BBCode ([code])
-        $content        = trim( $content );
-        
-        $content = preg_replace( '#(<br(?:[^>]+?)?>)#i', '', $content );
-        $content = trim( $content );
-        
+        // $content        = trim( $content ); # Possibly causing whitespace issues
+
+        $content = preg_replace( '#(<br(?:[^>]+?)?>)#i', '<!-preserve.newline-->', $content );
+        // $content = trim( $content ); # Possibly causing whitespace issues
+
         $content = str_replace( '<!-preserve.newline-->', "\n", $content );
-        
+
         // Grab the option
         $lineNums = 1;
         $langAdd  = '';
-        
+
         if ( ! is_array( $option ) )
         {
             list( $options['lang'], $options['lineNum']) = explode( ':', $option );
@@ -152,11 +152,11 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         {
             $options = $option;
         }
-        
+
         // Make it pretty!
         return $this->_colorfy( $content, $options );
     }
-    
+
 
     /**
      * GeSHi the code
@@ -188,16 +188,16 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
         {
             case 'js':
                 $options['lang'] = 'javascript';
-            break;
+                break;
             case 'html':
                 // Default to HTML5, unless specified otherwise
                 $options['lang'] = 'html5';
-            break;
+                break;
             case 'auto':
-            break;
+                break;
             default:
                 // Nothing to do here, we'll check in just a second on these
-            break;
+                break;
         }
 
         if( $this->_isLanguageAvailable( $options['lang'] ) !== false )
@@ -234,7 +234,7 @@ class bbcode_plugin_geshi extends bbcode_plugin_code
 
         $content = html_entity_decode( $content );
         $geshi = new GeSHi( $content , $language );
-        
+
         // Parse any settings ------------------------------------------------------------------------------------------
         // -> Basics
         $geshi->set_header_type( GESHI_HEADER_PRE );
